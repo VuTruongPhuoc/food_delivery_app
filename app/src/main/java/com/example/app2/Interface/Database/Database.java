@@ -33,15 +33,18 @@ public class Database extends SQLiteAssetHelper {
         qb.setTables(sqlTable);
         Cursor c = qb.query(db, sqlSelect, null, null, null, null,null);
         final List<Order> result = new ArrayList<>();
-        if(c.moveToFirst()) {
-            do {
-                result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
-                        c.getString(c.getColumnIndex("ProductName")),
-                        c.getString(c.getColumnIndex("Quantity")),
-                        c.getString(c.getColumnIndex("Price")),
-                        c.getString(c.getColumnIndex("Discount"))
-                        ));
-            } while(c.moveToNext());
+        if(c != null)
+        {
+            if(c.moveToFirst()) {
+                do {
+                    result.add(new Order(c.getString(c.getColumnIndex("ProductId")),
+                            c.getString(c.getColumnIndex("ProductName")),
+                            c.getString(c.getColumnIndex("Quantity")),
+                            c.getString(c.getColumnIndex("Price")),
+                            c.getString(c.getColumnIndex("Discount"))
+                    ));
+                } while(c.moveToNext());
+            }
         }
         return result;
     }
