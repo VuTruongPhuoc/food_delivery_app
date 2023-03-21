@@ -13,11 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.example.app2.Database.Database;
+import com.example.app2.Interface.Database.Database;
 import com.example.app2.Model.Food;
 import com.example.app2.Model.Order;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,8 +50,6 @@ public class FoodDetails extends AppCompatActivity {
 
         elegantNumberButton = findViewById(R.id.number_button);
         btnCart = findViewById(R.id.btnCart);
-
-
         radioFoodSize = findViewById(R.id.food_size);
 
         radioFoodSize.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -80,9 +77,9 @@ public class FoodDetails extends AppCompatActivity {
 //                if(radioFoodButton.getText().equals("Small"))
 //                    price = currentFood.getPrice();
 //                else if(radioFoodButton.getText().equals("Medium"))
-//                    price = String.valueOf(Integer.parseInt(currentFood.getPrice())*2);
+//                    price = String.valueOf(Integer.parseInt(currentFood.getPrice())*1.5);
 //                else
-//                    price = String.valueOf(Integer.parseInt(currentFood.getPrice())*3);
+//                    price = String.valueOf(Integer.parseInt(currentFood.getPrice())*2);
                 new Database(getBaseContext()).addToCart(new Order(
                         foodId,
                         currentFood.getName(),
@@ -118,10 +115,10 @@ public class FoodDetails extends AppCompatActivity {
                 currentFood = dataSnapshot.getValue(Food.class);
                 Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
                 collapsingToolbarLayout.setTitle(currentFood.getName());
-                if(price.charAt(0)== 'S')
+                if(price.charAt(0) == 'S')
                     food_price.setText(price);
                 else
-                    food_price.setText('\u20B9' +  price);
+                    food_price.setText(price + '\u20AB');
                 food_name.setText(currentFood.getName());
                 food_description.setText(currentFood.getDescription());
             }

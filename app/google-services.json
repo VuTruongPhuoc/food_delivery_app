@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "27765891422",
+    "firebase_url": "https://fooddeliapp-fa13b-default-rtdb.firebaseio.com",
+    "project_id": "fooddeliapp-fa13b",
+    "storage_bucket": "fooddeliapp-fa13b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27765891422:android:275e1c1667df27a94a6fcf",
+        "android_client_info": {
+          "package_name": "com.example.app2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27765891422-h7581vn8eblsbu8bpgc0iui3g95243q4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLx-M-RO8MUx8v6bmOCQMgpDbVzWm9Yjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27765891422-h7581vn8eblsbu8bpgc0iui3g95243q4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

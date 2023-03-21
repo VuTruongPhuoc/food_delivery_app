@@ -40,7 +40,6 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"here",Toast.LENGTH_SHORT);
-
 //                ProgressDialog mDialog = new ProgressDialog(SignIn.this);
 //                mDialog.sentMessage("Please wait...");
                     customer.addValueEventListener(new ValueEventListener() {
@@ -55,7 +54,7 @@ public class SignIn extends AppCompatActivity {
                                 startActivity(homeIntent);
                                 finish();
                             } else {
-                                Toast.makeText(SignIn.this, "Incorrect password.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignIn.this, "Mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else {

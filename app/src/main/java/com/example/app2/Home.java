@@ -52,7 +52,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toolbar.setTitle("Menu");
         setSupportActionBar(toolbar);
 
-
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
 
@@ -97,7 +96,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         startService(service);
 //        Toast.makeText(getApplicationContext(),"service started",Toast.LENGTH_SHORT).show();
     }
-
     private void loadMenu() {
         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
             @Override

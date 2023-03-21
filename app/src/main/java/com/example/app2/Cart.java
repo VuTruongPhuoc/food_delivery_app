@@ -21,14 +21,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app2.Common.Common;
-import com.example.app2.Database.Database;
+import com.example.app2.Interface.Database.Database;
 import com.example.app2.Model.Order;
 import com.example.app2.Model.Request;
 import com.example.app2.Remote.IGoogleService;
@@ -36,7 +34,6 @@ import com.example.app2.ViewHolder.CartAdapter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.server.response.FastJsonResponse;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -85,7 +82,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         setContentView(R.layout.activity_cart);
 
         mGoogleMapServices = Common.getGoogleMapsAPI();
-
 
         // Runtime permission
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -150,12 +146,9 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
-
         alertDialog.show();
-
     }
 
     private void createLocationRequest() {
@@ -164,8 +157,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
-
-
     }
 
     @Override
@@ -308,7 +299,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         for(Order order:cart)
             total += ((Double.parseDouble(order.getPrice())) * (Double.parseDouble(order.getQuantity())));
 
-        Locale locale = new Locale("en", "IN");
+        Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
 
         txtTotalPrice.setText(fmt.format(total));

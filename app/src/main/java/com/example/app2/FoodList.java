@@ -41,12 +41,10 @@ public class FoodList extends AppCompatActivity {
         if(getIntent() != null) {
             CategoryId = getIntent().getStringExtra("CategoryId");
         }
-
         if(!CategoryId.isEmpty() && CategoryId != null) {
             loadfoodlist(CategoryId);
         }
     }
-
     private void loadfoodlist(String categoryId) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (Food.class,
                 R.layout.food_item,

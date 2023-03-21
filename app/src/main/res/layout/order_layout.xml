@@ -39,16 +39,16 @@
 
             <TextView
                 android:id="@+id/order_id"
-                android:layout_marginRight="10dp"
-                android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="bold|normal"
-                android:text="#111111"
-                android:layout_gravity="right"
-                android:textColor="@color/fbutton_color_midnight_blue"
-                android:layout_marginBottom="3dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center_vertical|start"
+                android:text="111111d"
+                android:textAllCaps="true"
+                android:textColor="@color/fbutton_color_midnight_blue"
+                android:textStyle="bold|normal">
 
             </TextView>
 

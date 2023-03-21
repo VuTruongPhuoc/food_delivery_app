@@ -7,7 +7,6 @@ public class Common {
 
     public static User currentUser;
     private static final String GOOGLE_API_URL = "https://maps.googleapis.com/";
-
     public static IGoogleService getGoogleMapsAPI() {
         return RetrofitClient.getGoogleClient(GOOGLE_API_URL).create(IGoogleService.class);
     }

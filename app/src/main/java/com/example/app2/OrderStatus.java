@@ -60,8 +60,8 @@ public class OrderStatus extends AppCompatActivity {
                 orderViewHolder.txtOrderAddress.setText(request.getAddress());
                 orderViewHolder.txtOrderPhone.setText(request.getPhone());
                 double d = Double.parseDouble(request.getDistance());
-                double price = (d-10)*5.0;
-                Locale locale = new Locale("en", "IN");
+                double price = (d-10)*5000;
+                Locale locale = new Locale("vi", "VN");
                 NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
                 orderViewHolder.txtOrderDistance.setText(request.getTotal() + " + " + fmt.format(price));
             }

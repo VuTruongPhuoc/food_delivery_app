@@ -35,7 +35,7 @@ public class SignUp extends AppCompatActivity {
         btnmail = (MaterialEditText) findViewById(R.id.edtmail);
         signup = (Button) findViewById(R.id.signUp);
 
-        final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*^]).{8,15})"; //1 digit from 0-9, 1 lowercase char, 1 uppercase char, 1 special symbol, length min = 8, max = 15
+        final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*^]).{6,15})";
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference customer = database.getReference("User");
@@ -56,7 +56,7 @@ public class SignUp extends AppCompatActivity {
                                 Toast.makeText(SignUp.this, "Invalid email address.", Toast.LENGTH_SHORT).show();
                             }
                             else if(!isPasswordValid(btnpassword.getText().toString())) {
-                                Toast.makeText(SignUp.this, "Invalid password.\nPassword should contain:\n1 digit, 1 lowercase letter, 1 uppercase letter, 1 special symbol\nMinimum length = 8 characters", Toast.LENGTH_LONG).show();
+                                Toast.makeText(SignUp.this, "Invalid password.\nPassword should contain:\n1 digit, 1 lowercase letter, 1 uppercase letter, 1 special symbol\nMinimum length = 6 characters", Toast.LENGTH_LONG).show();
                             }
                             else {
                                 User user = new User(btnname.getText().toString(), btnpassword.getText().toString(), btnmail.getText().toString());
@@ -85,7 +85,6 @@ public class SignUp extends AppCompatActivity {
                     {
                         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
                     }
-
                 });
             }
         });

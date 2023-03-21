@@ -19,9 +19,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTitle("BiteSize");
+        this.setTitle("HIHI");
         setContentView(R.layout.activity_main);
-
 
         signIn = (Button) findViewById(R.id.btnSignIn);
         signUp = (Button) findViewById(R.id.btnSignUp);

@@ -12,10 +12,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listCart"
-        android:background="@android:color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"></androidx.recyclerview.widget.RecyclerView>
 
     <androidx.cardview.widget.CardView
         android:layout_alignParentBottom="true"
@@ -50,10 +49,10 @@
                     android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_marginRight="15dp"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
                     android:gravity="center"
-                    android:text="@string/_1000"
+                    android:text="1000d"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"></TextView>
 

@@ -4,9 +4,7 @@ public class Food {
     private String name, image, description, price, discount, menuId;
 
     public Food() {
-
     }
-
     public Food(String name, String image, String description, String price, String discount, String menuId) {
         this.name = name;
         this.image = image;
@@ -15,7 +13,6 @@ public class Food {
         this.discount = discount;
         this.menuId = menuId;
     }
-
     public String getName() {
         return name;
     }
