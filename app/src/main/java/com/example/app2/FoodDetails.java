@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import kotlin.jvm.internal.Ref;
+
 public class FoodDetails extends AppCompatActivity {
 
     TextView food_name, food_price, food_description;
@@ -40,6 +42,7 @@ public class FoodDetails extends AppCompatActivity {
     RadioGroup radioFoodSize;
     RadioButton radioFoodButton;
     String price = "Select item size";
+    static  String size = "Large";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +60,15 @@ public class FoodDetails extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 radioFoodButton = findViewById(checkedId);
                 if(radioFoodButton.getText().equals("Small"))
+                {
                     price = currentFood.getPrice();
+                    size = "Small";
+                }
                 else if(radioFoodButton.getText().equals("Medium"))
+                {
                     price = String.valueOf(Double.parseDouble(currentFood.getPrice())*1.5);
+                    size = "Medium";
+                }
                 else
                     price = String.valueOf(Double.parseDouble(currentFood.getPrice())*2);
 
@@ -70,24 +79,23 @@ public class FoodDetails extends AppCompatActivity {
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                new Database(getBaseContext()).cleanCart();
-//                int selectedId = radioFoodSize.getCheckedRadioButtonId();
-//                radioFoodButton = findViewById(selectedId);
-//                System.out.println(radioFoodButton.getText());
-//                if(radioFoodButton.getText().equals("Small"))
-//                    price = currentFood.getPrice();
-//                else if(radioFoodButton.getText().equals("Medium"))
-//                    price = String.valueOf(Integer.parseInt(currentFood.getPrice())*1.5);
-//                else
-//                    price = String.valueOf(Integer.parseInt(currentFood.getPrice())*2);
-                new Database(getBaseContext()).addToCart(new Order(
-                        foodId,
-                        currentFood.getName(),
-                        elegantNumberButton.getNumber(),
-                        price,
-                        currentFood.getDiscount()
-                ));
-                Toast.makeText(FoodDetails.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                int selectedId = radioFoodSize.getCheckedRadioButtonId();
+                radioFoodButton = findViewById(selectedId);
+                if(radioFoodButton == null)
+                {
+                    Toast.makeText(FoodDetails.this, "Please choose size", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    new Database(getBaseContext()).addToCart(new Order(
+                            foodId,
+                            currentFood.getName(),
+                            elegantNumberButton.getNumber(),
+                            price,
+                            currentFood.getDiscount()
+                    ));
+                    Toast.makeText(FoodDetails.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         food_description = findViewById(R.id.food_description);

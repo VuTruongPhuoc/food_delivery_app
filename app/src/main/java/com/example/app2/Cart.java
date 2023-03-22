@@ -80,7 +80,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
         mGoogleMapServices = Common.getGoogleMapsAPI();
 
         // Runtime permission
@@ -125,7 +124,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
             }
         });
         loadListFood();
-
     }
 
     private void clearCart() {
@@ -210,8 +208,8 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 //        alertDialog.setIcon(R.drawable.ic_attach_money_black_24dp);
 
 
-        final double localLat = 25.5529486;
-        final double localLng = 81.8789919;
+        final double localLat = 21.025458;
+        final double localLng = 105.830697;
 
         RadioButton rdiShipToAddress = order_address.findViewById(R.id.rdiShipToAddress);
         RadioButton rdiHomeAddress = order_address.findViewById(R.id.rdiHomeAddress);
@@ -240,11 +238,20 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         rdiHomeAddress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                edtAddress.setText("BITS PILANI HYDERABAD CAMPUS");
-                distancek = 10.345;
+                if(isChecked){
+                    edtAddress.setText("34 Cau Giay, Dong Da , HaNoi , VietNam");
+                    distancek = 7.54;
+                }
             }
         });
-
+        rdiCashOnDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    check = 0;
+                }
+            }
+        });
         rdiPayNow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -274,7 +281,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                     Intent payment = new Intent(Cart.this, PaymentGateway.class);
                     startActivity(payment);
                 }
-
                 Toast.makeText(Cart.this, "Order Placed!", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -355,7 +361,8 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         }
         else {
             double theta = lon1 - lon2;
-            double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+            double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2))
+                    + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
             dist = Math.acos(dist);
             dist = Math.toDegrees(dist);
             dist = dist * 60 * 1.1515;

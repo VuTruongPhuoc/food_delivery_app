@@ -13,15 +13,13 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-
     <TextView
-        android:id = "@+id/txtfullName"
+        android:id="@+id/txtfullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        android:text="Test"
+        android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
 
 
 </LinearLayout>

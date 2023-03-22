@@ -16,24 +16,24 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="9"
             android:background="@color/fbutton_color_carrot"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="bold|normal"
-                android:text="Status"
-                android:textColor="#fff"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:gravity="center_vertical|start"
+                android:text="Status"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textStyle="bold|normal">
 
             </TextView>
 
@@ -45,7 +45,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="3dp"
                 android:gravity="center_vertical|start"
-                android:text="111111d"
+                android:text="11111"
                 android:textAllCaps="true"
                 android:textColor="@color/fbutton_color_midnight_blue"
                 android:textStyle="bold|normal">
@@ -56,41 +56,41 @@
                 android:id="@+id/order_dist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="7dp"
-                android:layout_gravity="right"
                 android:text="New Price"
-                android:textColor="#fff"
                 android:textAllCaps="true"
+                android:textColor="#fff"
                 android:textStyle="bold|normal">
 
             </TextView>
 
             <TextView
                 android:id="@+id/order_address"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="italic"
-                android:text="Address"
-                android:textColor="#fff"
-                android:layout_marginBottom="3dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center_vertical|start"
+                android:text="Address"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:textStyle="italic">
 
             </TextView>
 
             <TextView
                 android:id="@+id/order_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="italic"
                 android:text="12345678"
+                android:textAllCaps="true"
                 android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:textStyle="italic">
 
             </TextView>
         </LinearLayout>

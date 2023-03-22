@@ -1,6 +1,4 @@
 package com.example.app2.ViewHolder;
-
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -13,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.example.app2.FoodDetails;
 import com.example.app2.Interface.ItemClickListener;
 import com.example.app2.Model.Order;
 import com.example.app2.R;
@@ -24,7 +23,7 @@ import java.util.Locale;
 
 class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txt_cart_name, txt_price;
+    public TextView txt_cart_name, txt_price, txt_cart_size;
     public ImageView img_cart_count;
 
     private ItemClickListener itemClickListener;
@@ -36,6 +35,7 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
         txt_cart_name = itemView.findViewById(R.id.cart_item_name);
+        txt_cart_size = itemView.findViewById(R.id.card_item_Size);
         txt_price = itemView.findViewById(R.id.cart_item_Price);
         img_cart_count = itemView.findViewById(R.id.card_item_count);
     }
@@ -54,9 +54,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
         this.listData = listData;
         this.context = context;
     }
-
-
-
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -70,7 +67,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
         TextDrawable drawable = TextDrawable.builder()
                 .buildRect(""+ listData.get(position).getQuantity(), Color.TRANSPARENT);
         holder.img_cart_count.setImageDrawable(drawable);
-
 
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);

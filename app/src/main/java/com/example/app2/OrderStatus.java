@@ -40,6 +40,7 @@ public class OrderStatus extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+
         if (getIntent().getExtras() == null)
             loadOrders(Common.currentUser.getPhone());
         else
@@ -60,7 +61,7 @@ public class OrderStatus extends AppCompatActivity {
                 orderViewHolder.txtOrderAddress.setText(request.getAddress());
                 orderViewHolder.txtOrderPhone.setText(request.getPhone());
                 double d = Double.parseDouble(request.getDistance());
-                double price = (d-10)*5000;
+                double price = d*3850;
                 Locale locale = new Locale("vi", "VN");
                 NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
                 orderViewHolder.txtOrderDistance.setText(request.getTotal() + " + " + fmt.format(price));
@@ -68,5 +69,6 @@ public class OrderStatus extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
     }
+
 
 }

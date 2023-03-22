@@ -58,7 +58,7 @@ public class SignIn extends AppCompatActivity {
                             }
                         }
                         else {
-                            Toast.makeText(SignIn.this, "You're not registered yet. Sign up!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignIn.this, "Bạn chưa đăng ký. Đăng ký", Toast.LENGTH_SHORT).show();
                         }
                     }
 

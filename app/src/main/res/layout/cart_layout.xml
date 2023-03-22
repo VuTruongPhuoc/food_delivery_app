@@ -8,47 +8,55 @@
     app:cardElevation="5dp">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/fbutton_color_carrot">
+        android:background="@color/fbutton_color_carrot"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:layout_width="356dp"
+            android:layout_height="match_parent"
             android:layout_weight="9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/cart_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:gravity="center_vertical|start"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:text="Food 01"
-                android:textColor="#ffff"
                 android:fontFamily="@font/arima_madurai"
+                android:gravity="center_vertical|start"
+                android:text="Food 01"
+                android:textAllCaps="true"
+                android:textColor="#ffff"
                 android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:textStyle="bold">
 
             </TextView>
 
             <TextView
-                android:id="@+id/cart_item_Price"
-                android:layout_width="match_parent"
+                android:id="@+id/card_item_Size"
+                android:layout_width="127dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="size"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/cart_item_Price"
+                android:layout_width="300dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/arima_madurai"
                 android:gravity="center_vertical|start"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
                 android:text="100,000"
-                android:textColor="#ffff"
                 android:textAllCaps="true"
+                android:textColor="#ffff"
                 android:textSize="16sp"
                 android:textStyle="bold|italic">
 
@@ -58,14 +66,13 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/card_item_count"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center_vertical|start"
-            android:background="@android:color/holo_green_dark"
-            android:id = "@+id/card_item_count"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_width="35dp"
-            android:layout_height="35dp">
-        </ImageView>
+            android:background="@android:color/holo_green_dark"></ImageView>
 
     </LinearLayout>
 

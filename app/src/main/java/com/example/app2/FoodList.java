@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import com.example.app2.Interface.ItemClickListener;
@@ -29,7 +31,6 @@ public class FoodList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
-
         database = FirebaseDatabase.getInstance();
         foodlist = database.getReference("Foods");
 
@@ -70,4 +71,11 @@ public class FoodList extends AppCompatActivity {
         };
         recycler_menu.setAdapter(adapter);
     }
+
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        MenuInflater inflater = new MenuInflater(this);
+//        inflater.inflate(R.menu.action_menu,menu);
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//    }
 }
