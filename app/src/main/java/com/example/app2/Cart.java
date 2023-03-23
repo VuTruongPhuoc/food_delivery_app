@@ -128,15 +128,15 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
     private void clearCart() {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Cart.this);
-        alertDialog.setTitle("Xoá hết giỏ hàng");
-        alertDialog.setMessage("Bạn có chắc muốn xoá hết giỏ hàng?");
+        alertDialog.setTitle("Dọn dẹp giỏ hàng");
+        alertDialog.setMessage("Bạn có chắc muốn dọn dẹp giỏ hàng?");
 
         alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
                 new Database(getBaseContext()).cleanCart();
-                Toast.makeText(Cart.this, "Đã xoá hết giỏ hàng", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cart.this, "Đã dọn dẹp giỏ hàng", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -187,7 +187,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
             if(GooglePlayServicesUtil.isUserRecoverableError(resultCode))
                 GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_REQUEST).show();
             else {
-                Toast.makeText(this, "This device is not supported", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Thiết bị này không được hỗ trợ", Toast.LENGTH_SHORT).show();
                 finish();
             }
             return false;
@@ -198,7 +198,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
     private void showAlertDialog() {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Cart.this);
         alertDialog.setTitle("One More Step!");
-        alertDialog.setMessage("Enter your Address: ");
+        alertDialog.setMessage("Nhập địa chỉ của bạn: ");
 
         LayoutInflater inflater = this.getLayoutInflater();
         View order_address = inflater.inflate(R.layout.order_address, null);

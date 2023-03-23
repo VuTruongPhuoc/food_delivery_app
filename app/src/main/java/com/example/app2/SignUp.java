@@ -60,7 +60,7 @@ public class SignUp extends AppCompatActivity {
                             }
                             else {
                                 User user = new User(btnname.getText().toString(), btnpassword.getText().toString(), btnmail.getText().toString());
-                                customer.child(btnphone.getText().toString()).setValue(user);
+                                    customer.child(btnphone.getText().toString()).setValue(user);
                                 Toast.makeText(SignUp.this, "Bạn đã đăng ký thành công!", Toast.LENGTH_SHORT).show();
                                 finish();
                             }

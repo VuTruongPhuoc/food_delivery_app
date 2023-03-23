@@ -121,7 +121,7 @@ public class FoodDetails extends AppCompatActivity {
                 currentFood = dataSnapshot.getValue(Food.class);
                 Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
                 collapsingToolbarLayout.setTitle(currentFood.getName());
-                if(price.charAt(0) == 'S')
+                if(price.charAt(0) == 'C')
                     food_price.setText(price);
                 else
                     food_price.setText(price + '\u20AB');
