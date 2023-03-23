@@ -128,15 +128,15 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
     private void clearCart() {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Cart.this);
-        alertDialog.setTitle("Clear Cart");
-        alertDialog.setMessage("Are you sure you want to clear cart?");
+        alertDialog.setTitle("Xoá hết giỏ hàng");
+        alertDialog.setMessage("Bạn có chắc muốn xoá hết giỏ hàng?");
 
         alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
                 new Database(getBaseContext()).cleanCart();
-                Toast.makeText(Cart.this, "Cart Cleared", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cart.this, "Đã xoá hết giỏ hàng", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -281,7 +281,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                     Intent payment = new Intent(Cart.this, PaymentGateway.class);
                     startActivity(payment);
                 }
-                Toast.makeText(Cart.this, "Order Placed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cart.this, "Đã đặt hàng!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

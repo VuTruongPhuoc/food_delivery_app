@@ -41,8 +41,8 @@ public class FoodDetails extends AppCompatActivity {
 
     RadioGroup radioFoodSize;
     RadioButton radioFoodButton;
-    String price = "Select item size";
-    static  String size = "Large";
+    String price = "Chọn size";
+    static  String size = "Lớn";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,15 +59,13 @@ public class FoodDetails extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 radioFoodButton = findViewById(checkedId);
-                if(radioFoodButton.getText().equals("Small"))
+                if(radioFoodButton.getText().equals("Nhỏ"))
                 {
                     price = currentFood.getPrice();
-                    size = "Small";
                 }
-                else if(radioFoodButton.getText().equals("Medium"))
+                else if(radioFoodButton.getText().equals("Vừa"))
                 {
                     price = String.valueOf(Double.parseDouble(currentFood.getPrice())*1.5);
-                    size = "Medium";
                 }
                 else
                     price = String.valueOf(Double.parseDouble(currentFood.getPrice())*2);
@@ -83,7 +81,7 @@ public class FoodDetails extends AppCompatActivity {
                 radioFoodButton = findViewById(selectedId);
                 if(radioFoodButton == null)
                 {
-                    Toast.makeText(FoodDetails.this, "Please choose size", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoodDetails.this, "Vui lòng chọn size", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     new Database(getBaseContext()).addToCart(new Order(
@@ -93,7 +91,7 @@ public class FoodDetails extends AppCompatActivity {
                             price,
                             currentFood.getDiscount()
                     ));
-                    Toast.makeText(FoodDetails.this, "Added to Cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FoodDetails.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
                 }
 
             }

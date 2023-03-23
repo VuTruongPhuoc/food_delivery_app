@@ -41,7 +41,7 @@
                     android:gravity="center"
                     android:layout_marginLeft="15dp"
                     android:layout_alignParentLeft="true"
-                    android:text="@string/total"
+                    android:text="Tổng tiền :"
                     android:textColor="#C0D114"
                     android:textSize="20sp"></TextView>
 
@@ -74,7 +74,7 @@
                     android:gravity="center"
                     android:background="@drawable/button_round_3"
                     android:fontFamily="@font/arima_madurai"
-                    android:text="@string/clear_cart"
+                    android:text="Dọn sạch"
                     android:textColor="@android:color/white" />
 
                 <Button
@@ -87,7 +87,7 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/button_round_2"
                     android:fontFamily="@font/arima_madurai"
-                    android:text="@string/place_order"
+                    android:text="Đặt hàng"
                     android:textColor="@android:color/white" />
 
             </RelativeLayout>
