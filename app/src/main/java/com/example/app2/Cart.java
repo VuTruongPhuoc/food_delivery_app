@@ -25,7 +25,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.app2.Interface.ItemClickListener;
 import com.example.app2.Common.Common;
 import com.example.app2.Interface.Database.Database;
 import com.example.app2.Interface.OnCartItemChangedListener;

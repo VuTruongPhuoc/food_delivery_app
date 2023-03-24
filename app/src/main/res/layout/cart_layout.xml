@@ -44,7 +44,6 @@
                 android:layout_width="127dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="size"
                 android:textSize="16sp" />
 
             <TextView
@@ -77,15 +76,6 @@
             app:textSize="8sp">
 
         </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
-
-        <ImageView
-            android:id="@+id/card_item_count"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical|start"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/holo_green_dark"></ImageView>
 
     </LinearLayout>
 

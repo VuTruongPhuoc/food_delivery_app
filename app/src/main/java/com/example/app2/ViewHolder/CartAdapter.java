@@ -44,7 +44,6 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
         txt_cart_name = itemView.findViewById(R.id.cart_item_name);
         txt_cart_size = itemView.findViewById(R.id.card_item_Size);
         txt_price = itemView.findViewById(R.id.cart_item_Price);
-        img_cart_count = itemView.findViewById(R.id.card_item_count);
         enbutton = itemView.findViewById(R.id.e_number_button);
         txtTotalPrice = itemView.findViewById(R.id.total);
         itemView.setOnClickListener(this);
@@ -81,9 +80,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRect(""+ listData.get(position).getQuantity(), Color.TRANSPARENT);
-        holder.img_cart_count.setImageDrawable(drawable);
+//        TextDrawable drawable = TextDrawable.builder()
+//                .buildRect(""+ listData.get(position).getQuantity(), Color.TRANSPARENT);
+//        holder.img_cart_count.setImageDrawable(drawable);
         holder.enbutton.setNumber(listData.get(position).getQuantity());
         holder.enbutton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
