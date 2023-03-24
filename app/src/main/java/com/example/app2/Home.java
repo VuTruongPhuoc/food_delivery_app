@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.app2.Common.Common;
 import com.example.app2.Interface.ItemClickListener;
-import com.example.app2.Model.Category;
+import com.example.app2.Model.Food;
 import com.example.app2.Service.ListenOrder;
-import com.example.app2.ViewHolder.MenuViewHolder;
+import com.example.app2.ViewHolder.FoodViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -31,15 +33,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private AppBarConfiguration mAppBarConfiguration;
-
     FirebaseDatabase database;
-    DatabaseReference category;
+    DatabaseReference foodlist;
     TextView txtfullName;
-
-    FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
-    RecyclerView recycler_menu;
+    FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter;
+    RecyclerView recycler_item;
     RecyclerView.LayoutManager layoutManager;
+    EditText edtSearch;
+    Button btnSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +50,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         setSupportActionBar(toolbar);
 
         database = FirebaseDatabase.getInstance();
-        category = database.getReference("Category");
-
+        foodlist = database.getReference("Foods");
+        edtSearch = findViewById(R.id.edtSearch);
+        btnSearch = findViewById(R.id.btnSearch);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,8 +67,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 this, drawer, toolbar, R.string.Open, R.string.Close);
         drawer.setDrawerListener(toggle);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                )
+        AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(
+        )
                 .setDrawerLayout(drawer)
                 .build();
         toggle.syncState();
@@ -79,39 +81,71 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         txtfullName.setText(Common.currentUser.getName());
         txtfullName.setTextSize(20);
 
-
-        recycler_menu = (RecyclerView) findViewById(R.id.recycler_menu);
-        recycler_menu.setHasFixedSize(true);
+        recycler_item = (RecyclerView) findViewById(R.id.recycler_item);
+        recycler_item.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        recycler_menu.setLayoutManager(layoutManager);
+        recycler_item.setLayoutManager(layoutManager);
 
-        loadMenu();
-
+        loadfoodlist();
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadsearchfood(edtSearch.getText().toString());
+            }
+        });
         //Register service
         Intent service = new Intent(Home.this, ListenOrder.class);
         startService(service);
 //        Toast.makeText(getApplicationContext(),"service started",Toast.LENGTH_SHORT).show();
     }
-    private void loadMenu() {
-        adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
+    private void loadsearchfood(String item) {
+        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (Food.class,
+                R.layout.food_item,
+                FoodViewHolder.class,
+                foodlist.orderByChild("name").equalTo(item)) {
             @Override
-            protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
-                menuViewHolder.txtMenuName.setText(category.getName());
-                Picasso.with(getBaseContext()).load(category.getImage()).into(menuViewHolder.imageView);
-                final Category clickItem = category;
-                menuViewHolder.setItemClickListener(new ItemClickListener() {
+            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
+                viewHolder.foodName.setText(model.getName());
+                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.foodImage);
+                final Food local = model;
+                viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodlist = new Intent(Home.this, FoodList.class);
-                        foodlist.putExtra("CategoryId", adapter.getRef(position).getKey());
-                        startActivity(foodlist);
+                        Intent foodDetails = new Intent(Home.this, FoodDetails.class);
+                        foodDetails.putExtra("FoodId", adapter.getRef(position).getKey());
+                        startActivity(foodDetails);
                     }
                 });
-            }
-        };
-        recycler_menu.setAdapter(adapter);
-    }
 
+            }
+
+        };
+        recycler_item.setAdapter(adapter);
+    }
+    private void loadfoodlist() {
+        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (Food.class,
+                R.layout.food_item,
+                FoodViewHolder.class,
+                foodlist) {
+            @Override
+            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
+                viewHolder.foodName.setText(model.getName());
+                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.foodImage);
+                final Food local = model;
+                viewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Intent foodDetails = new Intent(Home.this, FoodDetails.class);
+                        foodDetails.putExtra("FoodId", adapter.getRef(position).getKey());
+                        startActivity(foodDetails);
+                    }
+                });
+
+            }
+
+        };
+        recycler_item.setAdapter(adapter);
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -144,7 +178,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             startActivity(cartIntent);
         }
         else if (id == R.id.nav_menu) {
-
+            Intent menuIntent = new Intent(Home.this, MenuList.class);
+            startActivity(menuIntent);
         }
         else if (id == R.id.nav_orders) {
 //            Toast.makeText(getApplicationContext(),"in home",Toast.LENGTH_SHORT);
