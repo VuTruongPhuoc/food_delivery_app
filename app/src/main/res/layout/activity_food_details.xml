@@ -105,7 +105,7 @@
                             android:textStyle="bold"></TextView>
 
                         <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                            android:id="@+id/number_button"
+                            android:id="@+id/e_number_button"
                             android:layout_width="100dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"

@@ -38,6 +38,7 @@
 
             </TextView>
 
+
             <TextView
                 android:id="@+id/card_item_Size"
                 android:layout_width="127dp"
@@ -48,8 +49,8 @@
 
             <TextView
                 android:id="@+id/cart_item_Price"
-                android:layout_width="300dp"
-                android:layout_height="37dp"
+                android:layout_width="241dp"
+                android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/arima_madurai"
@@ -62,8 +63,20 @@
 
             </TextView>
 
-
         </LinearLayout>
+
+        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+            android:id="@+id/e_number_button"
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="7dp"
+            app:backGroundColor="#289129"
+            app:finalNumber="50"
+            app:initialNumber="0"
+            app:textSize="8sp">
+
+        </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
         <ImageView
             android:id="@+id/card_item_count"

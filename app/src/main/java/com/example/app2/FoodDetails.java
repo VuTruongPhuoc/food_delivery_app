@@ -24,8 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import kotlin.jvm.internal.Ref;
-
 public class FoodDetails extends AppCompatActivity {
 
     TextView food_name, food_price, food_description;
@@ -51,7 +49,7 @@ public class FoodDetails extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         foods = database.getReference("Foods");
 
-        elegantNumberButton = findViewById(R.id.number_button);
+        elegantNumberButton = findViewById(R.id.e_number_button);
         btnCart = findViewById(R.id.btnCart);
         radioFoodSize = findViewById(R.id.food_size);
 

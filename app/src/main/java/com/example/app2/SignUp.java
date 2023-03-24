@@ -22,17 +22,17 @@ import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
-    MaterialEditText btnname, btnpassword, btnphone, btnmail;
+    MaterialEditText medtname, medtpassword, medtphone, medtmail;
     Button signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        btnname = (MaterialEditText) findViewById(R.id.edtname);
-        btnpassword = (MaterialEditText) findViewById(R.id.edtpassword);
-        btnphone = (MaterialEditText) findViewById(R.id.edtphone);
-        btnmail = (MaterialEditText) findViewById(R.id.edtmail);
+        medtname = (MaterialEditText) findViewById(R.id.edtname);
+        medtpassword = (MaterialEditText) findViewById(R.id.edtpassword);
+        medtphone = (MaterialEditText) findViewById(R.id.edtphone);
+        medtmail = (MaterialEditText) findViewById(R.id.edtmail);
         signup = (Button) findViewById(R.id.signUp);
 
         final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*^]).{6,15})";
@@ -47,20 +47,20 @@ public class SignUp extends AppCompatActivity {
                 customer.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(btnphone.getText().toString()).exists()) {
+                        if(dataSnapshot.child(medtphone.getText().toString()).exists()) {
                             Toast.makeText(SignUp.this, "Số điện thoại này đã được đăng ký.", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            if(!isEmailValid((btnmail.getText().toString())))
+                            if(!isEmailValid((medtmail.getText().toString())))
                             {
                                 Toast.makeText(SignUp.this, "Địa chỉ email không hợp lệ.", Toast.LENGTH_SHORT).show();
                             }
-                            else if(!isPasswordValid(btnpassword.getText().toString())) {
+                            else if(!isPasswordValid(medtpassword.getText().toString())) {
                                 Toast.makeText(SignUp.this, "Mật khẩu không hợp lệ. Mật khẩu bao gồm: 1 chữ số, 1 chữ thường, 1 chữ hoa, 1 ký hiệu đặc biệt, độ dài tối thiểu là 6 ký tự", Toast.LENGTH_LONG).show();
                             }
                             else {
-                                User user = new User(btnname.getText().toString(), btnpassword.getText().toString(), btnmail.getText().toString());
-                                    customer.child(btnphone.getText().toString()).setValue(user);
+                                User user = new User(medtname.getText().toString(), medtpassword.getText().toString(), medtmail.getText().toString());
+                                    customer.child(medtphone.getText().toString()).setValue(user);
                                 Toast.makeText(SignUp.this, "Bạn đã đăng ký thành công!", Toast.LENGTH_SHORT).show();
                                 finish();
                             }

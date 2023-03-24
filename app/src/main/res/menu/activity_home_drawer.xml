@@ -25,6 +25,12 @@
             android:icon="?attr/actionModePasteDrawable"
             android:title="Đơn đặt hàng" />
 
+        <item
+            android:id="@+id/nav_contacts"
+            android:height="20sp"
+            android:color="@android:color/white"
+            android:icon="@android:drawable/stat_sys_phone_call"
+            android:title="Liên hệ" />
 
         <item
             android:id="@+id/nav_signout"

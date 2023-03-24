@@ -1,15 +1,11 @@
 package com.example.app2;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.app2.Common.Common;
 import com.example.app2.Interface.ItemClickListener;
@@ -154,6 +150,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 //            Toast.makeText(getApplicationContext(),"in home",Toast.LENGTH_SHORT);
             Intent orderIntent = new Intent(Home.this, OrderStatus.class);
             startActivity(orderIntent);
+        }else if(id == R.id.nav_contacts) {
+            Intent contact = new Intent(Home.this, Contacts.class);
+            startActivity(contact);
         }
         else {
             Intent signIn = new Intent(Home.this, SignIn.class);

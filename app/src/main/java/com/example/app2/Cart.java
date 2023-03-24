@@ -25,8 +25,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app2.Interface.ItemClickListener;
 import com.example.app2.Common.Common;
 import com.example.app2.Interface.Database.Database;
+import com.example.app2.Interface.OnCartItemChangedListener;
 import com.example.app2.Model.Order;
 import com.example.app2.Model.Request;
 import com.example.app2.Remote.IGoogleService;
@@ -40,6 +42,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -52,15 +55,14 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-
     FirebaseDatabase database;
     DatabaseReference requests;
-
     TextView txtTotalPrice;
     Button btnPlaceOrder;
     Button btnClearCart;
     List<Order> cart = new ArrayList<>();
     CartAdapter adapter;
+    OnCartItemChangedListener listener;
 
     // Location
     private LocationRequest mLocationRequest;
@@ -97,7 +99,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                 createLocationRequest();
             }
         }
-
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("Requests");
 
@@ -114,6 +115,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
             @Override
             public void onClick(View v) {
                 showAlertDialog();
+                loadListFood();
             }
         });
 
@@ -125,7 +127,11 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         });
         loadListFood();
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadListFood();
+    }
     private void clearCart() {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(Cart.this);
         alertDialog.setTitle("Dọn dẹp giỏ hàng");
@@ -292,23 +298,20 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
             }
         });
-
         alertDialog.show();
     }
-
     private void loadListFood() {
         cart = new Database(this).getCarts();
-        adapter = new CartAdapter(cart, this);
+        adapter = new CartAdapter(cart, this, txtTotalPrice, listener);
         recyclerView.setAdapter(adapter);
-
         double total = 0;
         for(Order order:cart)
-            total += ((Double.parseDouble(order.getPrice())) * (Double.parseDouble(order.getQuantity())));
-
+            total += ((Double.parseDouble(order.getPrice()))
+                    * (Double.parseDouble(order.getQuantity())));
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
         txtTotalPrice.setText(fmt.format(total));
+
     }
 
     @Override
