@@ -3,6 +3,7 @@ package com.example.app2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.example.app2.Interface.Database.Database;
 import com.example.app2.Model.Food;
 import com.example.app2.Model.Order;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,8 +50,15 @@ public class FoodDetails extends AppCompatActivity {
 
         elegantNumberButton = findViewById(R.id.e_number_button);
         btnCart = findViewById(R.id.btnCart);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cartIntent = new Intent(FoodDetails.this, Cart.class);
+                startActivity(cartIntent);
+            }
+        });
         radioFoodSize = findViewById(R.id.food_size);
-
         radioFoodSize.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

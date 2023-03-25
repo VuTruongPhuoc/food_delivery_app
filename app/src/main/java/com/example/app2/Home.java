@@ -40,12 +40,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -109,6 +104,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         recycler_item.setLayoutManager(layoutManager);
 
         loadfoodlist();
+        Intent service = new Intent(Home.this, ListenOrder.class);
+        startService(service);
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
