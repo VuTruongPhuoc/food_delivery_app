@@ -30,12 +30,10 @@ This project deals with development of two android applications:
 * Live location tracking
 
 ## Team :
-* [Amanjee](https://github.com/AmanJee-BITS) &nbsp;&nbsp;&nbsp; `(Developer)`
-* [Rudresh Pratap Singh](https://github.com/rudreshsingh999) &nbsp;&nbsp;&nbsp; `(Developer)`
-* [Praneetha Vaddamanu](https://github.com/pranurs) &nbsp;&nbsp;&nbsp; `(Developer)`
+* [Phuoc](https://github.com/VuTruongPhuoc) &nbsp;&nbsp;&nbsp; `(Developer)`
 
 ## Delivery Side
-Link to second application of this project - [Delivery App](https://github.com/AmanJee-BITS/Food-Delivery-Android-Application-ServerSide)
+Link to second application of this project - [Delivery App](https://github.com/VuTruongPhuoc/food_delivery_app-Android-Application-ServerSide)
 
 
 ## Contributing
@@ -45,7 +43,7 @@ contribution would involve the following:
 
 1. Fork this repository in your account.
 2. Clone it on your local machine.
-3. Add a new remote using `git remote add upstream https://github.com/AmanJee-BITS/Food-Delivery-Android-Application`.
+3. Add a new remote using `git remote add upstream https://github.com/VuTruongPhuoc/food_delivery_app-Android-Application`.
 4. Create a new feature branch with `git checkout -b my-feature`.
 5. Make your changes.
 6. Commit your changes.

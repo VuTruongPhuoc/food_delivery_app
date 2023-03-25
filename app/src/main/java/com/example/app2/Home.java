@@ -189,7 +189,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (Food.class,
                 R.layout.food_item,
                 FoodViewHolder.class,
-                foodlist)
+                foodlist.orderByChild("name"))
         {
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
