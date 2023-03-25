@@ -1,10 +1,10 @@
-# Bite Size [![MIT Licensed](https://img.shields.io/github/license/AmanJee-BITS/Food-Delivery-Android-Application)](https://choosealicense.com/licenses/mit/)
+# Bite Size [![MIT Licensed](https://github.com/VuTruongPhuoc/food_delivery_app)](https://github.com/VuTruongPhuoc/food_delivery_app)
 
 Food delivery android application for ordering food from a particular restaurant.
 
 This project deals with development of two android applications:
-* [Bite Size](https://github.com/AmanJee-BITS/Food-Delivery-Android-Application) - For ordering food (customer side).
-* [Bite Size Delivery](https://github.com/AmanJee-BITS/Food-Delivery-Android-Application-ServerSide) - For delivery of food (delivery person side).
+* [Bite Size](https://github.com/VuTruongPhuoc/food_delivery_app) - For ordering food (customer side).
+* [Bite Size Delivery](https://github.com/VuTruongPhuoc/food_delivery_app) - For delivery of food (delivery person side).
 
 ## Logo :
 <br>
@@ -33,7 +33,7 @@ This project deals with development of two android applications:
 * [Phuoc](https://github.com/VuTruongPhuoc) &nbsp;&nbsp;&nbsp; `(Developer)`
 
 ## Delivery Side
-Link to second application of this project - [Delivery App](https://github.com/VuTruongPhuoc/food_delivery_app-Android-Application-ServerSide)
+Link to second application of this project - [Delivery App](https://github.com/VuTruongPhuoc/food_delivery_app)
 
 
 ## Contributing
