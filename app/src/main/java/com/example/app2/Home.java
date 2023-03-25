@@ -1,12 +1,20 @@
 package com.example.app2;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.app2.Common.Common;
@@ -22,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,6 +39,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,6 +57,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     RecyclerView.LayoutManager layoutManager;
     EditText edtSearch;
     Button btnSearch;
+    ImageView ivAvatar;
+    private ConnectReceiver receiver;
+    IntentFilter intentFilter;
+    private static final int PICK_IMAGE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +73,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         foodlist = database.getReference("Foods");
         edtSearch = findViewById(R.id.edtSearch);
         btnSearch = findViewById(R.id.btnSearch);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +98,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
+        ivAvatar = headerView.findViewById(R.id.ivAvatar);
         txtfullName = headerView.findViewById(R.id.txtfullName);
         txtfullName.setText(Common.currentUser.getName());
         txtfullName.setTextSize(20);
@@ -91,18 +113,61 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View view) {
                 loadsearchfood(edtSearch.getText().toString());
+                if(edtSearch.getText().toString().equals("")){
+                    loadfoodlist();
+                }
             }
         });
-        //Register service
-        Intent service = new Intent(Home.this, ListenOrder.class);
-        startService(service);
-//        Toast.makeText(getApplicationContext(),"service started",Toast.LENGTH_SHORT).show();
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                loadsearchfood(edtSearch.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        ivAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Chọn ảnh"), PICK_IMAGE_REQUEST);
+            }
+        });
+        receiver = new ConnectReceiver();
+        intentFilter = new IntentFilter("com.example.food_delivery_app.SOME_ACTION");
+        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(receiver,intentFilter);
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            try {
+                // Hiển thị hình ảnh đã chọn trong ImageView
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ivAvatar.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void loadsearchfood(String item) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (Food.class,
                 R.layout.food_item,
                 FoodViewHolder.class,
-                foodlist.orderByChild("name").equalTo(item)) {
+                foodlist.orderByChild("name").startAt(item).endAt(item + "\uf8ff")) {
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
                 viewHolder.foodName.setText(model.getName());
@@ -126,7 +191,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (Food.class,
                 R.layout.food_item,
                 FoodViewHolder.class,
-                foodlist) {
+                foodlist)
+        {
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
                 viewHolder.foodName.setText(model.getName());
@@ -154,7 +220,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         else
             super.onBackPressed();
     }
-
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        unregisterReceiver(receiver);
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        registerReceiver(receiver,intentFilter);
+//    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return super.onOptionsItemSelected(item);

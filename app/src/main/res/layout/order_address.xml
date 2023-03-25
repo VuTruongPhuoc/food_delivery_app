@@ -42,30 +42,27 @@
                 android:layout_margin="2dp">
 
                 <RadioButton
-                    android:id = "@+id/rdiShipToAddress"
-                    android:text="Ship To This Address"
+                    android:id="@+id/rdiShipToAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </RadioButton>
+                    android:layout_height="wrap_content"
+                    android:text="Ship đến địa chỉ :"></RadioButton>
 
                 <RadioButton
-                    android:id = "@+id/rdiHomeAddress"
-                    android:text = "Home Address"
+                    android:id="@+id/rdiHomeAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </RadioButton>
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ nhà"></RadioButton>
             </RadioGroup>
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id = "@+id/edtpay"
-                android:text = " Payment Method"
-                android:focusable="false"
-                android:clickable="false"
-                android:layout_margin="2dp"
-                app:met_baseColor="@color/colorPrimary"
+                android:id="@+id/edtpay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </com.rengwuxian.materialedittext.MaterialEditText>
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="Phương thức thanh toán"
+                app:met_baseColor="@color/colorPrimary"></com.rengwuxian.materialedittext.MaterialEditText>
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -73,19 +70,17 @@
                 android:layout_margin="2dp">
 
                 <RadioButton
-                    android:id = "@+id/rdiCashOnDelivery"
-                    android:text="Cash On Delivery"
-                    android:checked="true"
+                    android:id="@+id/rdiCashOnDelivery"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </RadioButton>
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Thanh toán khi giao hàng"></RadioButton>
 
                 <RadioButton
-                    android:id = "@+id/rdiPayNow"
-                    android:text = "Pay Now"
+                    android:id="@+id/rdiPayNow"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </RadioButton>
+                    android:layout_height="wrap_content"
+                    android:text="Trả ngay"></RadioButton>
             </RadioGroup>
 
 

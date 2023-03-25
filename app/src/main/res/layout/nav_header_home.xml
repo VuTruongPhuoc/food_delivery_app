@@ -14,9 +14,9 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="85dp"
-        android:layout_height="89dp"
+        android:id="@+id/ivAvatar"
+        android:layout_width="78dp"
+        android:layout_height="68dp"
         android:background="@drawable/side_nav_bar"
         app:srcCompat="@drawable/avatar"
         tools:srcCompat="@drawable/avatar" />
@@ -25,7 +25,7 @@
         android:layout_width="207dp"
         android:layout_height="47dp"
         android:paddingTop="16dp"
-        android:paddingLeft="5dp"
+        android:layout_marginLeft="7dp"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 </LinearLayout>

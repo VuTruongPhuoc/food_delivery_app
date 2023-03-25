@@ -27,15 +27,15 @@
             <EditText
                 android:id="@+id/edtSearch"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Search"/>
+                android:layout_weight="1"
+                android:hint="Search" />
 
             <Button
                 android:id="@+id/btnSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search"/>
+                android:text="Tìm kiếm"/>
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>

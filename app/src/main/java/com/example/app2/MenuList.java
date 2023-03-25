@@ -54,9 +54,6 @@ public class MenuList extends AppCompatActivity {
         recycler_menu.setLayoutManager(layoutManager);
 
         loadMenu();
-
-        //Register service
-//        Toast.makeText(getApplicationContext(),"service started",Toast.LENGTH_SHORT).show();
     }
     private void loadMenu() {
         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {

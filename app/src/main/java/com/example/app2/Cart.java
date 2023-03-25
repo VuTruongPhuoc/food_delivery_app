@@ -74,7 +74,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
     private static int LOCATION_REQUEST_CODE = 9999;
     private static int PLAY_SERVICES_REQUEST = 9997;
 
-    private int check = 0;
+//    private int check = 0;
     IGoogleService mGoogleMapServices;
     private static double distancek = 0.0;
     @Override
@@ -124,11 +124,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                 clearCart();
             }
         });
-        loadListFood();
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
         loadListFood();
     }
     private void clearCart() {
@@ -218,8 +213,8 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
         RadioButton rdiShipToAddress = order_address.findViewById(R.id.rdiShipToAddress);
         RadioButton rdiHomeAddress = order_address.findViewById(R.id.rdiHomeAddress);
-        RadioButton rdiCashOnDelivery = order_address.findViewById(R.id.rdiCashOnDelivery);
-        RadioButton rdiPayNow = order_address.findViewById(R.id.rdiPayNow);
+//        RadioButton rdiCashOnDelivery = order_address.findViewById(R.id.rdiCashOnDelivery);
+//        RadioButton rdiPayNow = order_address.findViewById(R.id.rdiPayNow);
 
         final Geocoder geocoder;
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -249,22 +244,22 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                 }
             }
         });
-        rdiCashOnDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    check = 0;
-                }
-            }
-        });
-        rdiPayNow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    check = 1;
-                }
-            }
-        });
+//        rdiCashOnDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked) {
+//                    check = 0;
+//                }
+//            }
+//        });
+//        rdiPayNow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked) {
+//                    check = 1;
+//                }
+//            }
+//        });
 
         alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
@@ -282,10 +277,10 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
                 new Database(getBaseContext()).cleanCart();
 
-                if(check == 1) {
-                    Intent payment = new Intent(Cart.this, PaymentGateway.class);
-                    startActivity(payment);
-                }
+//                if(check == 1) {
+//                    Intent payment = new Intent(Cart.this, PaymentGateway.class);
+//                    startActivity(payment);
+//                }
                 Toast.makeText(Cart.this, "Đã đặt hàng!", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -310,9 +305,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         Locale locale = new Locale("vi", "VN");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         txtTotalPrice.setText(fmt.format(total));
-
     }
-
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         displayLocation();
@@ -334,10 +327,10 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if(mLastLocation != null) {
-            Log.d("LOCATION", "Your Location : "+ mLastLocation.getLatitude()+ " ," + mLastLocation.getLongitude());
+            Log.d("LOCATION", "Địa chỉ của bạn : "+ mLastLocation.getLatitude()+ " ," + mLastLocation.getLongitude());
         }
         else {
-            Log.d("LOCATION", "Couldn't find Location");
+            Log.d("LOCATION", "Không tìm thấy địa chỉ");
         }
     }
 

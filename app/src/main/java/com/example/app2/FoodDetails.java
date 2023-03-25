@@ -28,8 +28,6 @@ public class FoodDetails extends AppCompatActivity {
 
     TextView food_name, food_price, food_description;
     ImageView food_image;
-    CollapsingToolbarLayout collapsingToolbarLayout;
-//    FloatingActionButton floatingActionButton;
     Button btnCart;
     ElegantNumberButton elegantNumberButton;
     String foodId;
@@ -40,7 +38,6 @@ public class FoodDetails extends AppCompatActivity {
     RadioGroup radioFoodSize;
     RadioButton radioFoodButton;
     String price = "Chọn size";
-    static  String size = "Lớn";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +64,6 @@ public class FoodDetails extends AppCompatActivity {
                 }
                 else
                     price = String.valueOf(Double.parseDouble(currentFood.getPrice())*2);
-
                 getDetailFood(foodId);
             }
         });
@@ -99,10 +95,6 @@ public class FoodDetails extends AppCompatActivity {
         food_name = findViewById(R.id.food_name);
         food_price = findViewById(R.id.food_price);
 
-        collapsingToolbarLayout = findViewById(R.id.collapsing);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-
         if(getIntent() != null) {
             foodId = getIntent().getStringExtra("FoodId");
         }
@@ -110,6 +102,14 @@ public class FoodDetails extends AppCompatActivity {
         if(!foodId.isEmpty()) {
             getDetailFood(foodId);
         }
+        elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
+            @Override
+            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+                if(price.charAt(0) == 'C')
+                    price = String.valueOf(0);
+                food_price.setText(String.valueOf(Double.parseDouble(price) * Double.parseDouble(elegantNumberButton.getNumber())));
+            }
+        });
     }
 
     private void getDetailFood(String foodId) {
@@ -118,7 +118,6 @@ public class FoodDetails extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentFood = dataSnapshot.getValue(Food.class);
                 Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
-                collapsingToolbarLayout.setTitle(currentFood.getName());
                 if(price.charAt(0) == 'C')
                     food_price.setText(price);
                 else
@@ -126,7 +125,6 @@ public class FoodDetails extends AppCompatActivity {
                 food_name.setText(currentFood.getName());
                 food_description.setText(currentFood.getDescription());
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

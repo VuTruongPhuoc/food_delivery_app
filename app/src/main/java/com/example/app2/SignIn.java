@@ -40,8 +40,6 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"here",Toast.LENGTH_SHORT);
-//                ProgressDialog mDialog = new ProgressDialog(SignIn.this);
-//                mDialog.sentMessage("Please wait...");
                     customer.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
