@@ -172,7 +172,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         }
     }
 
-
     private synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)

@@ -45,7 +45,7 @@
                     android:id="@+id/rdiShipToAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ship đến địa chỉ :"></RadioButton>
+                    android:text="Ship đến địa chỉ hiện tại"></RadioButton>
 
                 <RadioButton
                     android:id="@+id/rdiHomeAddress"

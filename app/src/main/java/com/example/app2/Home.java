@@ -167,7 +167,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
                 foodViewHolder.foodName.setText(food.getName());
-                Picasso.with(getBaseContext()).load(food.getImage()).into(foodViewHolder.foodImage);
+                Picasso.get().load(food.getImage()).into(foodViewHolder.foodImage);
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -189,7 +189,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
                 foodViewHolder.foodName.setText(food.getName());
-                Picasso.with(getBaseContext()).load(food.getImage()).into(foodViewHolder.foodImage);
+                Picasso.get().load(food.getImage()).into(foodViewHolder.foodImage);
                 foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

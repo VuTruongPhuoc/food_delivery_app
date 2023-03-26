@@ -60,7 +60,7 @@ public class MenuList extends AppCompatActivity {
             @Override
             protected void populateViewHolder(MenuViewHolder menuViewHolder, Category category, int i) {
                 menuViewHolder.txtMenuName.setText(category.getName());
-                Picasso.with(getBaseContext()).load(category.getImage()).into(menuViewHolder.imageView);
+                Picasso.get().load(category.getImage()).into(menuViewHolder.imageView);
                 final Category clickItem = category;
                 menuViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

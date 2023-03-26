@@ -55,7 +55,7 @@ public class FoodList extends AppCompatActivity {
                 @Override
                 protected void populateViewHolder(FoodViewHolder foodviewHolder, Food food, int i) {
                     foodviewHolder.foodName.setText(food.getName());
-                    Picasso.with(getBaseContext()).load(food.getImage()).into(foodviewHolder.foodImage);
+                    Picasso.get().load(food.getImage()).into(foodviewHolder.foodImage);
                     final Food local = food;
                     foodviewHolder.setItemClickListener(new ItemClickListener() {
                         @Override

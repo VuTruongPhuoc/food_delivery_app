@@ -17,7 +17,6 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.app2.Interface.Database.Database;
 import com.example.app2.Model.Food;
 import com.example.app2.Model.Order;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -118,7 +117,7 @@ public class FoodDetails extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentFood = dataSnapshot.getValue(Food.class);
-                Picasso.with(getBaseContext()).load(currentFood.getImage()).into(food_image);
+                Picasso.get().load(currentFood.getImage()).into(food_image);
                 if(price.charAt(0) == 'C')
                     food_price.setText(price);
                 else
