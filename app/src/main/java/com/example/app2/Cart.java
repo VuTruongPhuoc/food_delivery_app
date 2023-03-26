@@ -172,6 +172,7 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         }
     }
 
+
     private synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -205,16 +206,12 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
         final MaterialEditText edtAddress = order_address.findViewById(R.id.edtaddress);
         alertDialog.setView(order_address);
         alertDialog.setIcon(R.drawable.shopping_cart);
-//        alertDialog.setIcon(R.drawable.ic_attach_money_black_24dp);
-
 
         final double localLat = 21.025458;
         final double localLng = 105.830697;
 
         RadioButton rdiShipToAddress = order_address.findViewById(R.id.rdiShipToAddress);
         RadioButton rdiHomeAddress = order_address.findViewById(R.id.rdiHomeAddress);
-//        RadioButton rdiCashOnDelivery = order_address.findViewById(R.id.rdiCashOnDelivery);
-//        RadioButton rdiPayNow = order_address.findViewById(R.id.rdiPayNow);
 
         final Geocoder geocoder;
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -244,22 +241,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
                 }
             }
         });
-//        rdiCashOnDelivery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(isChecked) {
-//                    check = 0;
-//                }
-//            }
-//        });
-//        rdiPayNow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(isChecked) {
-//                    check = 1;
-//                }
-//            }
-//        });
 
         alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
@@ -277,10 +258,6 @@ public class Cart extends AppCompatActivity implements GoogleApiClient.Connectio
 
                 new Database(getBaseContext()).cleanCart();
 
-//                if(check == 1) {
-//                    Intent payment = new Intent(Cart.this, PaymentGateway.class);
-//                    startActivity(payment);
-//                }
                 Toast.makeText(Cart.this, "Đã đặt hàng!", Toast.LENGTH_SHORT).show();
                 finish();
             }

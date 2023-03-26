@@ -111,14 +111,6 @@ public class FoodDetails extends AppCompatActivity {
         if(!foodId.isEmpty()) {
             getDetailFood(foodId);
         }
-        elegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
-            @Override
-            public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-                if(price.charAt(0) == 'C')
-                    price = String.valueOf(0);
-                food_price.setText(String.valueOf(Double.parseDouble(price) * Double.parseDouble(elegantNumberButton.getNumber())));
-            }
-        });
     }
 
     private void getDetailFood(String foodId) {

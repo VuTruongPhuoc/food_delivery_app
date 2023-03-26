@@ -80,9 +80,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, @SuppressLint("RecyclerView") int position) {
-//        TextDrawable drawable = TextDrawable.builder()
-//                .buildRect(""+ listData.get(position).getQuantity(), Color.TRANSPARENT);
-//        holder.img_cart_count.setImageDrawable(drawable);
         holder.enbutton.setNumber(listData.get(position).getQuantity());
         holder.enbutton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override

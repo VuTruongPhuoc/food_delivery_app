@@ -35,28 +35,37 @@ public class SignUp extends AppCompatActivity {
         medtmail = (MaterialEditText) findViewById(R.id.edtmail);
         signup = (Button) findViewById(R.id.signUp);
 
-        final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%*^]).{6,15})";
-
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference customer = database.getReference("User");
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(medtname.getText().toString().isEmpty() || medtphone.getText().toString().isEmpty() || medtmail.getText().toString().isEmpty() || medtpassword.getText().toString().isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Vui lòng nhập đầy đủ thông tin.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 customer.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(medtphone.getText().toString()).exists()) {
+                        if(!isPhoneNumberValid(medtphone.getText().toString())) {
+                            Toast.makeText(SignUp.this, "Số điện thoại không hợp lệ.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if(dataSnapshot.hasChild(medtphone.getText().toString())) {
                             Toast.makeText(SignUp.this, "Số điện thoại này đã được đăng ký.", Toast.LENGTH_SHORT).show();
+                            return;
                         }
                         else {
                             if(!isEmailValid((medtmail.getText().toString())))
                             {
                                 Toast.makeText(SignUp.this, "Địa chỉ email không hợp lệ.", Toast.LENGTH_SHORT).show();
+                                return;
                             }
                             else if(!isPasswordValid(medtpassword.getText().toString())) {
                                 Toast.makeText(SignUp.this, "Mật khẩu không hợp lệ. Mật khẩu bao gồm: 1 chữ số, 1 chữ thường, 1 chữ hoa, 1 ký hiệu đặc biệt, độ dài tối thiểu là 6 ký tự", Toast.LENGTH_LONG).show();
+                                return;
                             }
                             else {
                                 User user = new User(medtname.getText().toString(), medtpassword.getText().toString(), medtmail.getText().toString());
@@ -71,14 +80,15 @@ public class SignUp extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
-
-                    public boolean isPasswordValid (final String password){
-                        Pattern pattern;
-                        Matcher matcher;
-                        pattern = Pattern.compile(PASSWORD_PATTERN);
-                        matcher = pattern.matcher(password);
+                    public boolean isPhoneNumberValid(final String phoneNumber){
+                        Pattern pattern = Pattern.compile("^0\\d{9}$");
+                        Matcher matcher = pattern.matcher(phoneNumber);
                         return matcher.matches();
-
+                    }
+                    public boolean isPasswordValid (final String password){
+                        Pattern pattern = Pattern.compile(".{6,15}");
+                        Matcher matcher = pattern.matcher(password);
+                        return matcher.matches();
                     }
 
                     boolean isEmailValid (CharSequence email)

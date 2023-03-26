@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,8 @@ public class SignIn extends AppCompatActivity {
 
     EditText edtphone, edtpassword;
     Button signIn;
-
+    private ConnectReceiver receiver;
+    IntentFilter intentFilter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,6 @@ public class SignIn extends AppCompatActivity {
         edtphone = (EditText) findViewById(R.id.edtphone);
         edtpassword = (EditText) findViewById(R.id.edtpassword);
         signIn = (Button) findViewById(R.id.signIn);
-        Toast.makeText(getApplicationContext(),"here",Toast.LENGTH_SHORT);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference customer = database.getReference("User");
@@ -39,33 +40,45 @@ public class SignIn extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"here",Toast.LENGTH_SHORT);
-                    customer.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(edtphone.getText().toString()).exists()) {
-                            User user = dataSnapshot.child(edtphone.getText().toString()).getValue(User.class);
-                            user.setPhone(edtphone.getText().toString());
-                            if (user.getPassword().equals(edtpassword.getText().toString())) {
-                                Intent homeIntent = new Intent(SignIn.this, Home.class);
-                                Common.currentUser = user;
-                                startActivity(homeIntent);
-                                finish();
-                            } else {
-                                Toast.makeText(SignIn.this, "Mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else {
-                            Toast.makeText(SignIn.this, "Bạn chưa đăng ký. Đăng ký", Toast.LENGTH_SHORT).show();
+                if(edtphone.getText().toString().isEmpty() || edtpassword.getText().toString().isEmpty())
+                {
+                    Toast.makeText(SignIn.this, "Vui lòng nhập đủ thông tin." , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                customer.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child(edtphone.getText().toString()).exists()) {
+                        User user = dataSnapshot.child(edtphone.getText().toString()).getValue(User.class);
+                        user.setPhone(edtphone.getText().toString());
+                        if (user.getPassword().equals(edtpassword.getText().toString())) {
+                            Intent homeIntent = new Intent(SignIn.this, Home.class);
+                            Common.currentUser = user;
+                            startActivity(homeIntent);
+                            finish();
+                        } else {
+                            Toast.makeText(SignIn.this, "Mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
+                            return;
                         }
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    else {
+                        Toast.makeText(SignIn.this, "Bạn chưa đăng ký. Đăng ký", Toast.LENGTH_SHORT).show();
+                        return;
                     }
-                });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             }
         });
+
+        receiver = new ConnectReceiver();
+        intentFilter = new IntentFilter("com.example.food_delivery_app.SOME_ACTION");
+        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(receiver,intentFilter);
     }
 }

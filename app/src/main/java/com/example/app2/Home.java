@@ -5,7 +5,6 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -143,7 +142,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         receiver = new ConnectReceiver();
         intentFilter = new IntentFilter("com.example.food_delivery_app.SOME_ACTION");
         intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(receiver,intentFilter);
     }
     @Override
@@ -167,46 +165,40 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 FoodViewHolder.class,
                 foodlist.orderByChild("name").startAt(item).endAt(item + "\uf8ff")) {
             @Override
-            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
-                viewHolder.foodName.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.foodImage);
-                final Food local = model;
-                viewHolder.setItemClickListener(new ItemClickListener() {
+            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+                foodViewHolder.foodName.setText(food.getName());
+                Picasso.with(getBaseContext()).load(food.getImage()).into(foodViewHolder.foodImage);
+                foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodDetails = new Intent(Home.this, FoodDetails.class);
-                        foodDetails.putExtra("FoodId", adapter.getRef(position).getKey());
-                        startActivity(foodDetails);
+                        Intent fooDetails = new Intent(Home.this, FoodDetails.class);
+                        fooDetails.putExtra("FoodId", adapter.getRef(position).getKey());
+                        startActivity(fooDetails);
                     }
                 });
-
             }
-
         };
         recycler_item.setAdapter(adapter);
     }
     private void loadfoodlist() {
-        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (Food.class,
+        adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder> (
+                Food.class,
                 R.layout.food_item,
                 FoodViewHolder.class,
-                foodlist.orderByChild("name"))
-        {
+                foodlist.orderByChild("name")) {
             @Override
-            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
-                viewHolder.foodName.setText(model.getName());
-                Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.foodImage);
-                final Food local = model;
-                viewHolder.setItemClickListener(new ItemClickListener() {
+            protected void populateViewHolder(FoodViewHolder foodViewHolder, Food food, int i) {
+                foodViewHolder.foodName.setText(food.getName());
+                Picasso.with(getBaseContext()).load(food.getImage()).into(foodViewHolder.foodImage);
+                foodViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent foodDetails = new Intent(Home.this, FoodDetails.class);
-                        foodDetails.putExtra("FoodId", adapter.getRef(position).getKey());
-                        startActivity(foodDetails);
+                        Intent intentDetails = new Intent(Home.this, FoodDetails.class);
+                        intentDetails.putExtra("FoodId", adapter.getRef(position).getKey());
+                        startActivity(intentDetails);
                     }
                 });
-
             }
-
         };
         recycler_item.setAdapter(adapter);
     }
